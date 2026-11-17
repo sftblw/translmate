@@ -1,0 +1,384 @@
+:root {
+  color-scheme: light dark;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: CanvasText;
+  background: Canvas;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: Canvas;
+  color: CanvasText;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.options-shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 32px 28px 48px;
+}
+
+.page-header {
+  padding-bottom: 18px;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 16%, transparent);
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.page-header p,
+.help-text,
+.empty-state {
+  color: color-mix(in srgb, CanvasText 62%, Canvas);
+}
+
+.page-header p {
+  margin: 6px 0 0;
+  font-size: 13px;
+}
+
+.tab-list {
+  display: flex;
+  gap: 4px;
+  margin: 18px 0 22px;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 16%, transparent);
+}
+
+.tab-list button {
+  min-height: 36px;
+  padding: 7px 14px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: CanvasText;
+}
+
+.tab-list button:hover {
+  background: color-mix(in srgb, CanvasText 6%, Canvas);
+}
+
+.tab-list button.active {
+  border-bottom-color: Highlight;
+  font-weight: 600;
+}
+
+.tab-panel,
+.field-stack,
+.provider-cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-panel {
+  gap: 16px;
+}
+
+.provider-cards {
+  gap: 12px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 32px;
+}
+
+.section-title h2,
+.section-title h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.panel {
+  border: 1px solid color-mix(in srgb, CanvasText 14%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, CanvasText 2%, Canvas);
+  padding: 16px;
+}
+
+.add-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.preset-button {
+  min-height: 40px;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  border-radius: 4px;
+  background: color-mix(in srgb, CanvasText 3%, Canvas);
+  color: CanvasText;
+}
+
+.preset-button.active {
+  border-color: Highlight;
+  background: color-mix(in srgb, Highlight 12%, Canvas);
+  font-weight: 600;
+}
+
+.field-stack {
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.field span {
+  font-weight: 500;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 34px;
+  padding: 7px 9px;
+  border: 1px solid color-mix(in srgb, CanvasText 22%, transparent);
+  border-radius: 4px;
+  background: Field;
+  color: FieldText;
+}
+
+.field textarea {
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.field small {
+  color: color-mix(in srgb, CanvasText 62%, Canvas);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.behavior-settings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: Highlight;
+  outline: 2px solid color-mix(in srgb, Highlight 34%, transparent);
+  outline-offset: 0;
+}
+
+.joined-input {
+  display: flex;
+  gap: 8px;
+}
+
+.joined-input input {
+  flex: 1;
+}
+
+.button,
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid color-mix(in srgb, CanvasText 24%, transparent);
+  border-radius: 4px;
+  background: ButtonFace;
+  color: ButtonText;
+  min-height: 32px;
+}
+
+.button {
+  padding: 6px 12px;
+}
+
+.button.secondary {
+  background: color-mix(in srgb, CanvasText 4%, Canvas);
+  color: CanvasText;
+}
+
+.button:not(:disabled):hover,
+.icon-button:not(:disabled):hover {
+  background: color-mix(in srgb, CanvasText 10%, Canvas);
+}
+
+.icon-button {
+  width: 32px;
+  padding: 0;
+}
+
+.icon-button.danger:not(:disabled):hover {
+  border-color: color-mix(in srgb, Mark 40%, CanvasText);
+}
+
+.row-actions,
+.footer-actions,
+.provider-refresh-list,
+.inline-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.row-actions,
+.footer-actions {
+  justify-content: flex-end;
+}
+
+.provider-refresh-list {
+  flex-wrap: wrap;
+}
+
+.inline-actions {
+  gap: 8px;
+}
+
+.current-model-summary {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  border: 1px solid color-mix(in srgb, CanvasText 14%, transparent);
+  border-radius: 4px;
+  background: color-mix(in srgb, CanvasText 2%, Canvas);
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.current-model-summary span {
+  color: color-mix(in srgb, CanvasText 62%, Canvas);
+}
+
+.current-model-summary strong {
+  min-width: 0;
+  overflow: hidden;
+  color: CanvasText;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.provider-summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 14px 0 0;
+  font-size: 13px;
+}
+
+.provider-summary div {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.provider-summary dt {
+  color: color-mix(in srgb, CanvasText 62%, Canvas);
+}
+
+.provider-summary dd {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.help-text,
+.empty-state {
+  font-size: 12px;
+}
+
+.help-text,
+.empty-state {
+  margin: 0;
+}
+
+.status {
+  margin: 4px 0 0;
+  font-size: 13px;
+}
+
+.status.success,
+.status.info {
+  color: color-mix(in srgb, CanvasText 68%, Canvas);
+}
+
+.status.error {
+  color: Mark;
+}
+
+@media (max-width: 760px) {
+  .options-shell {
+    padding: 24px 16px 40px;
+  }
+
+  .section-title,
+  .footer-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .preset-grid,
+  .behavior-settings {
+    grid-template-columns: 1fr;
+  }
+
+  .current-model-summary {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .tab-list {
+    overflow-x: auto;
+  }
+}

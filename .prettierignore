@@ -1,0 +1,6 @@
+sidebar-next/
+node_modules/
+.output/
+.wxt/
+output/
+pnpm-lock.yaml

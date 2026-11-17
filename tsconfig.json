@@ -1,0 +1,9 @@
+{
+  "extends": "./.wxt/tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["wxt/modules", "webextension-polyfill", "vitest/globals", "node"],
+    "noUncheckedIndexedAccess": false
+  },
+  "include": [".wxt/wxt.d.ts", "src/**/*", "*.config.ts"]
+}

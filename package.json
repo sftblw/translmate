@@ -1,0 +1,54 @@
+{
+  "name": "translmate",
+  "description": "LLM powered translation extension",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.28.1",
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "svelte-check --tsgo --tsconfig tsconfig.json",
+    "smoke:firefox:sideload": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/firefox-sideload-smoke.ps1",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "postinstall": "wxt prepare",
+    "lint": "node scripts/check-project.mjs && oxlint --deny-warnings src scripts/check-project.mjs wxt.config.ts vitest.config.ts",
+    "format": "prettier \"src/**/*.{ts,svelte,css,html}\" \"scripts/*.mjs\" \"*.config.ts\" \"*.json\" --write",
+    "format:check": "prettier \"src/**/*.{ts,svelte,css,html}\" \"scripts/*.mjs\" \"*.config.ts\" \"*.json\" --check",
+    "check": "pnpm lint && pnpm format:check && pnpm compile && pnpm test"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^4.0.118",
+    "@ai-sdk/openai-compatible": "^3.0.92",
+    "@ai-sdk/svelte": "^5.0.173",
+    "@lucide/svelte": "^1.74.0",
+    "ai": "^7.0.173",
+    "svelte": "^5.57.3",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/webextension-polyfill": "^0.12.6",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "@wxt-dev/module-svelte": "^2.0.5",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^21.0.4",
+    "oxlint": "^1.94.0",
+    "prettier": "^3.10.1",
+    "prettier-plugin-svelte": "^4.1.1",
+    "svelte-check": "^4.7.8",
+    "typescript": "^6.0.0",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0",
+    "web-ext": "^10.8.0",
+    "wxt": "^0.21.5"
+  }
+}

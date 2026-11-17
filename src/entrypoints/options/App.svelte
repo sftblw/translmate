@@ -4,6 +4,7 @@
   import { DEFAULT_LLM_SETTINGS, loadLlmSettings, saveLlmSettings, type LlmSettings } from "~/utils/settings";
   import { fetchProviderModelCatalog } from "~/utils/models";
   import type { ModelSelection, ProviderConfig } from "~/shared/providers";
+  import { providerEndpointError } from "~/shared/providerEndpoint";
   import {
     getSmartModelPickerOptions,
     modelSelectionDisplayLabel,
@@ -143,8 +144,9 @@
   async function addProvider() {
     const name = providerDraft.name.trim();
     const baseUrl = providerDraft.baseUrl.trim();
-    if (!name || !baseUrl) {
-      status = { tone: "error", message: "Provider name and API base URL are required." };
+    const error = !name ? "Enter a provider name." : providerEndpointError(baseUrl);
+    if (error) {
+      status = { tone: "error", message: error };
       return;
     }
 
@@ -197,8 +199,9 @@
   async function saveProviderEdit(providerId: string) {
     const name = providerEditDraft.name.trim();
     const baseUrl = providerEditDraft.baseUrl.trim();
-    if (!name || !baseUrl) {
-      status = { tone: "error", message: "Provider name and API base URL are required." };
+    const error = !name ? "Enter a provider name." : providerEndpointError(baseUrl);
+    if (error) {
+      status = { tone: "error", message: error };
       return;
     }
 
@@ -365,8 +368,8 @@
       {#if isAddingProvider}
         <section class="panel add-panel">
           <p class="help-text">
-            When you start translation, this provider receives the page title, URL, selected text, and
-            translation conversation. Your API key and custom headers are sent to the configured endpoint.
+            When you start translation, this provider receives the page title, URL, text from the reading
+            area, and translation conversation. Requests include your configured key and custom headers.
           </p>
           <div class="preset-grid">
             {#each PROVIDER_PRESETS as preset}
@@ -389,6 +392,12 @@
             <label class="field">
               <span>API Base URL</span>
               <input bind:value={providerDraft.baseUrl} disabled={disableControls()} type="url" />
+              {#if providerDraft.baseUrl.trim().toLowerCase().startsWith("http:")}
+                <small
+                  >HTTP sends page content and credentials without encryption. Use it only on a trusted local
+                  network.</small
+                >
+              {/if}
             </label>
             <label class="field">
               <span>API protocol</span>
@@ -477,6 +486,12 @@
                   <label class="field">
                     <span>API Base URL</span>
                     <input bind:value={providerEditDraft.baseUrl} type="url" />
+                    {#if providerEditDraft.baseUrl.trim().toLowerCase().startsWith("http:")}
+                      <small
+                        >HTTP sends page content and credentials without encryption. Use it only on a trusted
+                        local network.</small
+                      >
+                    {/if}
                   </label>
                   <label class="field">
                     <span>API protocol</span>

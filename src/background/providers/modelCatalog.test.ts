@@ -6,7 +6,7 @@ const provider: ProviderConfig = {
   id: "provider-1",
   name: "Ollama qwen host",
   kind: "openai-compatible",
-  baseUrl: "https://provider.example/v1/",
+  baseUrl: "http://models.home.arpa/v1/",
   apiKey: "test-key",
   customHeaders: {
     "X-Provider": "local",
@@ -27,8 +27,9 @@ describe("fetchProviderModelIds", () => {
     const models = await fetchProviderModelIds(provider, fetchImpl);
 
     expect(models).toEqual(["translation-model", "second-model"]);
-    expect(fetchImpl).toHaveBeenCalledWith("https://provider.example/v1/models", {
+    expect(fetchImpl).toHaveBeenCalledWith("http://models.home.arpa/v1/models", {
       method: "GET",
+      redirect: "error",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer test-key",

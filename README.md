@@ -12,6 +12,8 @@ Translmate translates the page you are reading in Firefox with a language model 
 
 A fresh installation has an empty provider list. Connections begin when you fetch models or request translation. Previously saved providers retain their protocol and model selection.
 
+Use HTTPS for a hosted provider. For a model on your own network, enter its HTTP base URL using its IP address or host name. HTTP carries the page text and any provider credentials in cleartext. Enter the endpoint's final URL because provider requests do not follow redirects.
+
 ## Reading a page
 
 The default **Translate as I read** mode prioritizes text around the viewport. For a long article you want ready in advance, select **Translate the entire page in advance** under **Translation**. This queues content already loaded on the page. If a page has no recognizable main article, Translmate can ask the selected model to choose among short excerpts.
@@ -43,3 +45,5 @@ pnpm zip:firefox
 WXT writes `.output/translmate-<version>-firefox.zip` and `.output/translmate-<version>-sources.zip`. To compare builds, compare the files inside the extension ZIP. ZIP timestamps can differ. The test suite lives in the Git checkout. [AMO reviewer notes](docs/amo-reviewer-notes.md)
 
 [Change history](changelog.md) · [Decisions](docs/decisions/README.md) · [Architecture](docs/page-agent-architecture.md)
+
+Report issues on [GitHub](https://github.com/sftblw/translmate/issues). Translmate is available under either the [MIT License](LICENSE-MIT) or the [Apache License 2.0](LICENSE-APACHE), at your option. Third-party components retain their own licenses.

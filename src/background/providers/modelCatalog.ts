@@ -1,13 +1,9 @@
 import type { ProviderConfig } from "../../shared/providers";
+import { validatedProviderBaseUrl } from "../../shared/providerEndpoint";
 
 type OpenAIModelResponse = {
   data?: Array<{ id?: string }>;
 };
-
-function buildModelsUrl(baseUrl: string): string {
-  const trimmed = baseUrl.replace(/\/+$/, "");
-  return `${trimmed}/models`;
-}
 
 export async function fetchProviderModelIds(
   provider: ProviderConfig,
@@ -21,8 +17,9 @@ export async function fetchProviderModelIds(
     headers.Authorization = `Bearer ${provider.apiKey}`;
   }
 
-  const response = await fetchImpl(buildModelsUrl(provider.baseUrl), {
+  const response = await fetchImpl(`${validatedProviderBaseUrl(provider.baseUrl)}/models`, {
     method: "GET",
+    redirect: "error",
     headers,
   });
 

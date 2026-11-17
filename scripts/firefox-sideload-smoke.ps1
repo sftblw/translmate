@@ -83,8 +83,13 @@ if (!(Test-Path $prefs)) {
 }
 
 $prefsText = Get-Content $prefs -Raw
+$manifestText = Get-Content $manifest -Raw -Encoding UTF8
+$extensionId = ($manifestText | ConvertFrom-Json).browser_specific_settings.gecko.id
+if ([string]::IsNullOrWhiteSpace($extensionId)) {
+  throw "The built Firefox manifest must include an extension ID."
+}
 $required = @(
-  "translmate@sftbl.local",
+  $extensionId,
   "extensions.webextensions.uuids"
 )
 
@@ -93,7 +98,6 @@ if ($missing.Count -gt 0) {
   throw "Firefox sideload smoke failed. Missing prefs entries: $($missing -join ', ')"
 }
 
-$manifestText = Get-Content $manifest -Raw
 $hasSidebarKeys =
   $manifestText.Contains('"sidebar_action"') -or
   $manifestText.Contains('"side_panel"') -or
@@ -107,6 +111,6 @@ if ($hasSidebarKeys) {
   profile = $profile
   stdout = $stdout
   stderr = $stderr
-  extensionId = "translmate@sftbl.local"
+  extensionId = $extensionId
   sidebarRegistered = $false
 } | ConvertTo-Json

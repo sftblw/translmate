@@ -10,7 +10,9 @@ the extension UI.
 
 No provider account or credential is bundled with the extension. Functional
 testing that calls an LLM requires the reviewer to configure an endpoint,
-model, and API key in the extension options.
+model, and any key required by their provider in the extension options.
+
+To exercise translation locally without an account, start Ollama and run `ollama pull qwen3:8b`. Select the Ollama preset, choose Chat Completions, leave the key empty, save, then fetch models and set `qwen3:8b` as default. Select a target language different from English, open the IANA Example Domains article (https://www.iana.org/help/example-domains), and start translation. Check the final paragraph, then use Show original and Show translation. The model needs to support tool calling. This local setup is an alternative to a reviewer-supplied provider. The release was tested against vLLM and oMLX.
 
 ## Data transmission
 
@@ -18,6 +20,8 @@ When the user starts a translation, page text needed for that translation and
 the page title and URL, user instructions, and surrounding translation context are sent to the LLM endpoint explicitly
 configured by the user. The extension does not bundle an analytics or
 advertising service.
+
+The installation starts without a provider. A user may enter any HTTP or HTTPS provider host, including an internal DNS name for a self-hosted model. HTTP can send page data and configured credentials in cleartext. The settings form explains this when an HTTP URL is entered. The extension does not enforce a private-address allowlist. Provider requests reject redirects.
 
 ## Permission rationale
 

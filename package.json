@@ -2,7 +2,10 @@
   "name": "translmate",
   "description": "LLM powered translation extension",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "license": "MIT OR Apache-2.0",
+  "homepage": "https://github.com/sftblw/translmate",
+  "bugs": "https://github.com/sftblw/translmate/issues",
   "packageManager": "pnpm@10.28.1",
   "engines": {
     "node": ">=24.14.0"
